@@ -112,5 +112,18 @@ This will help answer questions like:
 
 	
 	1. pip install -r requirements.txt
-	2.docker-compose -f docker/docker-compose.yml up -d
+	2. docker-compose -f docker/docker-compose.yml up -d
 	
+
+	these are in requirements:
+	3. pip install streamlit
+	4. streamlit run app.py
+
+## 🔧 Requirements
+
+Make sure Docker is installed and running on your system.
+
+- [Install Docker](https://docs.docker.com/get-docker/)
+- Then run:
+```bash
+docker-compose -f docker/docker-compose.yml up -d
