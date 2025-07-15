@@ -14,6 +14,10 @@ A modular ETL pipeline project that simulates real-world data engineering tasks 
 - 📦 Fully containerized with **Docker Compose**
 - ✅ Ready-to-run inside **GitHub Codespaces**
 
+
+## 📸 Dashboard Preview
+
+![Streamlit Dashboard](https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit.png)
 ---
 
 ## 🧠 Project Architecture
@@ -127,3 +131,5 @@ Make sure Docker is installed and running on your system.
 - Then run:
 ```bash
 docker-compose -f docker/docker-compose.yml up -d
+
+
