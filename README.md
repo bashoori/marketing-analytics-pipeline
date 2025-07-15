@@ -6,13 +6,14 @@ A modular ETL pipeline project that simulates real-world data engineering tasks 
 
 ## 🚀 Features
 
-- 🛠 Extracts user event data and marketing campaigns from CSV files (or APIs)
-- 🔄 Transforms and cleans datasets using Pandas
-- 🔗 Joins data on `user_id` to create a unified engagement view
-- 💾 Loads results into a **PostgreSQL** database (simulating Redshift)
-- 📅 Scheduled with **Apache Airflow** DAGs
-- 📦 Fully containerized with **Docker Compose**
-- ✅ Ready-to-run inside **GitHub Codespaces**
+- 🛠 Extracts user event data and marketing campaigns from **JSON files** (simulating APIs or streaming data)
+- 🔄 Transforms, aggregates, and joins datasets using **Pandas**
+- 🔗 Merges campaign and gameplay data on `user_id` to create a unified engagement view
+- 💾 Loads the final dataset into a **PostgreSQL** database (simulating cloud warehouse like Redshift)
+- 📅 Scheduled and orchestrated with **Apache Airflow DAGs**
+- 📦 Fully containerized using **Docker Compose** (Airflow + PostgreSQL)
+- 🖥 Visualized with an interactive **Streamlit dashboard**
+- ✅ Runs seamlessly inside **GitHub Codespaces**
 
 
 ## 📸 Dashboard Preview
