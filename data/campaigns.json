@@ -1,0 +1,302 @@
+[
+  {
+    "user_id": 115,
+    "campaign_name": "Campaign 5",
+    "source": "Instagram",
+    "clicked_at": ""
+  },
+  {
+    "user_id": 100,
+    "campaign_name": "Campaign 5",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T00:07:00"
+  },
+  {
+    "user_id": 112,
+    "campaign_name": "Campaign 1",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T00:14:00"
+  },
+  {
+    "user_id": 101,
+    "campaign_name": "Campaign 3",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T00:21:00"
+  },
+  {
+    "user_id": 107,
+    "campaign_name": "Campaign 5",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T00:28:00"
+  },
+  {
+    "user_id": 109,
+    "campaign_name": "Campaign 2",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T00:35:00"
+  },
+  {
+    "user_id": 115,
+    "campaign_name": "Campaign 3",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T00:42:00"
+  },
+  {
+    "user_id": 106,
+    "campaign_name": "Campaign 1",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T00:49:00"
+  },
+  {
+    "user_id": 109,
+    "campaign_name": "Campaign 2",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T00:56:00"
+  },
+  {
+    "user_id": 112,
+    "campaign_name": "Campaign 2",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T01:03:00"
+  },
+  {
+    "user_id": 101,
+    "campaign_name": "Campaign 1",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T01:10:00"
+  },
+  {
+    "user_id": 108,
+    "campaign_name": "Campaign 1",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T01:17:00"
+  },
+  {
+    "user_id": 111,
+    "campaign_name": "Campaign 2",
+    "source": "Facebook",
+    "clicked_at": ""
+  },
+  {
+    "user_id": 106,
+    "campaign_name": "Campaign 5",
+    "source": "Google Ads",
+    "clicked_at": "2025-07-08T01:31:00"
+  },
+  {
+    "user_id": 103,
+    "campaign_name": "Campaign 5",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T01:38:00"
+  },
+  {
+    "user_id": 112,
+    "campaign_name": "Campaign 2",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T01:45:00"
+  },
+  {
+    "user_id": 100,
+    "campaign_name": "Campaign 1",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T01:52:00"
+  },
+  {
+    "user_id": 110,
+    "campaign_name": "Campaign 1",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T01:59:00"
+  },
+  {
+    "user_id": 105,
+    "campaign_name": "Campaign 2",
+    "source": "Google Ads",
+    "clicked_at": "2025-07-08T02:06:00"
+  },
+  {
+    "user_id": 103,
+    "campaign_name": "Campaign 3",
+    "source": "Google Ads",
+    "clicked_at": "2025-07-08T02:13:00"
+  },
+  {
+    "user_id": 106,
+    "campaign_name": "Campaign 2",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T02:20:00"
+  },
+  {
+    "user_id": 100,
+    "campaign_name": "Campaign 5",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T02:27:00"
+  },
+  {
+    "user_id": 103,
+    "campaign_name": "Campaign 3",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T02:34:00"
+  },
+  {
+    "user_id": 102,
+    "campaign_name": "Campaign 4",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T02:41:00"
+  },
+  {
+    "user_id": 108,
+    "campaign_name": "Campaign 1",
+    "source": "Organic",
+    "clicked_at": ""
+  },
+  {
+    "user_id": 106,
+    "campaign_name": "Campaign 2",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T02:55:00"
+  },
+  {
+    "user_id": 107,
+    "campaign_name": "Campaign 2",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T03:02:00"
+  },
+  {
+    "user_id": 108,
+    "campaign_name": "Campaign 3",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T03:09:00"
+  },
+  {
+    "user_id": 114,
+    "campaign_name": "Campaign 3",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T03:16:00"
+  },
+  {
+    "user_id": 104,
+    "campaign_name": "Campaign 1",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T03:23:00"
+  },
+  {
+    "user_id": 114,
+    "campaign_name": "Campaign 5",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T03:30:00"
+  },
+  {
+    "user_id": 102,
+    "campaign_name": "Campaign 4",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T03:37:00"
+  },
+  {
+    "user_id": 102,
+    "campaign_name": "Campaign 3",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T03:44:00"
+  },
+  {
+    "user_id": 115,
+    "campaign_name": "Campaign 2",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T03:51:00"
+  },
+  {
+    "user_id": 111,
+    "campaign_name": "Campaign 5",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T03:58:00"
+  },
+  {
+    "user_id": 110,
+    "campaign_name": "Campaign 3",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T04:05:00"
+  },
+  {
+    "user_id": 102,
+    "campaign_name": "Campaign 2",
+    "source": "Facebook",
+    "clicked_at": ""
+  },
+  {
+    "user_id": 113,
+    "campaign_name": "Campaign 1",
+    "source": "Instagram",
+    "clicked_at": "2025-07-08T04:19:00"
+  },
+  {
+    "user_id": 111,
+    "campaign_name": "Campaign 2",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T04:26:00"
+  },
+  {
+    "user_id": 111,
+    "campaign_name": "Campaign 5",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T04:33:00"
+  },
+  {
+    "user_id": 105,
+    "campaign_name": "Campaign 2",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T04:40:00"
+  },
+  {
+    "user_id": 106,
+    "campaign_name": "Campaign 5",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T04:47:00"
+  },
+  {
+    "user_id": 100,
+    "campaign_name": "Campaign 4",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T04:54:00"
+  },
+  {
+    "user_id": 106,
+    "campaign_name": "Campaign 5",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T05:01:00"
+  },
+  {
+    "user_id": 114,
+    "campaign_name": "Campaign 5",
+    "source": "Organic",
+    "clicked_at": "2025-07-08T05:08:00"
+  },
+  {
+    "user_id": 112,
+    "campaign_name": "Campaign 3",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T05:15:00"
+  },
+  {
+    "user_id": 114,
+    "campaign_name": "Campaign 1",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T05:22:00"
+  },
+  {
+    "user_id": 109,
+    "campaign_name": "Campaign 5",
+    "source": "Facebook",
+    "clicked_at": "2025-07-08T05:29:00"
+  },
+  {
+    "user_id": 109,
+    "campaign_name": "Campaign 3",
+    "source": "Organic",
+    "clicked_at": ""
+  },
+  {
+    "user_id": 104,
+    "campaign_name": "Campaign 3",
+    "source": "TikTok",
+    "clicked_at": "2025-07-08T05:43:00"
+  }
+]
