@@ -1,0 +1,11 @@
+marketing-analytics-pipeline/
+├── dashboard/
+│   ├── app.py
+│   └── logo.png  ← این عکس لوگوی توست
+
+add this:
+from PIL import Image  # بالای فایل اضافه شود
+
+# نمایش لوگو
+logo = Image.open("dashboard/logo.png")
+st.image(logo, use_column_width=True)

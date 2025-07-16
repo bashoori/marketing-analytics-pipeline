@@ -124,9 +124,13 @@ This will help answer questions like:
 	3. pip install streamlit
 	4. streamlit run app.py
 
+## how to run Streamlit:
+
+	streamlit run dashboard/app.py
+
 ## 🔧 Requirements
 
-Make sure Docker is installed and running on your system.
+Make sure Docker is installed and running on your system. (for PostgreSQL you should install docker)
 
 - [Install Docker](https://docs.docker.com/get-docker/)
 - Then run:

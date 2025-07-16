@@ -1,50 +1,68 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
 
-# Load database credentials
+# ───── Load environment and DB connection ─────
 load_dotenv()
 db_user = os.getenv("DB_USER")
 db_pass = os.getenv("DB_PASSWORD")
 db_host = os.getenv("DB_HOST", "localhost")
 db_port = os.getenv("DB_PORT", "5432")
 db_name = os.getenv("DB_NAME")
-
-# Connect to PostgreSQL
 conn_str = f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
 engine = create_engine(conn_str)
 
-# Load data
 @st.cache_data
 def load_data():
     query = "SELECT * FROM user_campaign_summary"
-    df = pd.read_sql(query, engine)
-    return df
+    return pd.read_sql(query, engine)
 
 df = load_data()
 
-# UI: Title and filters
-st.title("📊 Marketing Campaign Dashboard")
-st.markdown("Visualize performance of campaigns and revenue sources.")
+# ───── Sidebar Filters ─────
+st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/e/e1/EA_Sports_monogram_logo.svg", width=100)
+st.sidebar.header("📂 Filters")
+selected_campaigns = st.sidebar.multiselect("📢 Campaign", df["campaign_name"].unique(), default=df["campaign_name"].unique())
+selected_sources = st.sidebar.multiselect("🌐 Source", df["source"].unique(), default=df["source"].unique())
 
-# Filters
-campaigns = st.multiselect("Filter by Campaign", df["campaign_name"].unique(), default=df["campaign_name"].unique())
-sources = st.multiselect("Filter by Source", df["source"].unique(), default=df["source"].unique())
+filtered_df = df[df["campaign_name"].isin(selected_campaigns) & df["source"].isin(selected_sources)]
 
-filtered_df = df[df["campaign_name"].isin(campaigns) & df["source"].isin(sources)]
+# ───── KPI Metrics Row ─────
+st.title("🎯 Marketing Analytics Dashboard")
+kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+kpi1.metric("💰 Total Revenue", f"${filtered_df['total_revenue'].sum():,.2f}")
+kpi2.metric("⏱ Total Playtime", f"{filtered_df['total_playtime'].sum():,.0f} min")
+kpi3.metric("👥 Unique Users", filtered_df['user_id'].nunique())
+kpi4.metric("🎯 Campaigns Used", filtered_df['campaign_name'].nunique())
 
-# Metrics
-col1, col2 = st.columns(2)
-col1.metric("Total Revenue", f"${filtered_df['total_revenue'].sum():,.2f}")
-col2.metric("Total Playtime (min)", f"{filtered_df['total_playtime'].sum():,.0f}")
+# ───── Charts Section ─────
+chart1, chart2 = st.columns(2)
 
-# Show table
-st.subheader("🔎 Filtered Data")
-st.dataframe(filtered_df)
+with chart1:
+    st.subheader("💵 Revenue by Campaign")
+    fig1, ax1 = plt.subplots(figsize=(6, 4))
+    rev_by_campaign = filtered_df.groupby("campaign_name")["total_revenue"].sum().sort_values()
+    ax1.barh(rev_by_campaign.index, rev_by_campaign.values, color="#3399FF")
+    ax1.set_xlabel("Revenue")
+    ax1.set_ylabel("Campaign")
+    st.pyplot(fig1)
 
-# Chart
-st.subheader("📈 Revenue by Campaign")
-chart_data = filtered_df.groupby("campaign_name")["total_revenue"].sum().sort_values(ascending=False)
-st.bar_chart(chart_data)
+with chart2:
+    st.subheader("🧩 Users by Source")
+    fig2, ax2 = plt.subplots(figsize=(6, 4))
+    source_counts = filtered_df['source'].value_counts()
+    ax2.pie(source_counts.values, labels=source_counts.index, autopct='%1.1f%%', startangle=90, colors=plt.cm.Set3.colors)
+    ax2.axis('equal')
+    st.pyplot(fig2)
+
+st.subheader("📈 Playtime Trend by Source")
+fig3, ax3 = plt.subplots(figsize=(10, 4))
+trend = filtered_df.groupby(['source'])['total_playtime'].sum().sort_values(ascending=False)
+ax3.bar(trend.index, trend.values, color="#66CC99")
+ax3.set_ylabel("Total Playtime (min)")
+st.pyplot(fig3)
+
+
