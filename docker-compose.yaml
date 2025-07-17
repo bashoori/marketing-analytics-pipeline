@@ -8,15 +8,15 @@ x-airflow-common:
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__FERNET_KEY: ""
     AIRFLOW__CORE__LOAD_EXAMPLES: "False"
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
   volumes:
-    - ./dags:/opt/airflow/dags        # ← مطمئن شوید مسیر درست است
-    - ./logs:/opt/airflow/logs
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/plugins:/opt/airflow/plugins
   user: "${AIRFLOW_UID:-50000}"
 
 services:
-  # ------------------------- Database ----------------------------
-  postgres:
+  airflow-db:
     image: postgres:13
     restart: always
     environment:
@@ -24,9 +24,8 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
-      - postgres_db:/var/lib/postgresql/data
+      - airflow_db_data:/var/lib/postgresql/data
 
-  # ------------------------- Airflow Webserver -------------------
   webserver:
     <<: *airflow-common
     ports:
@@ -47,15 +46,27 @@ services:
       airflow webserver
       "
     depends_on:
-      - postgres
+      - airflow-db
       - scheduler
 
-  # ------------------------- Airflow Scheduler -------------------
   scheduler:
     <<: *airflow-common
     command: airflow scheduler
     depends_on:
-      - postgres
+      - airflow-db
+
+  pgdb:
+    image: postgres:14
+    container_name: pgdb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: marketingdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  postgres_db:
+  airflow_db_data:
+  pgdata:

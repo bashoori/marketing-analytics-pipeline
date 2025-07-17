@@ -18,7 +18,11 @@ A modular ETL pipeline project that simulates real-world data engineering tasks 
 
 ## 📸 Dashboard Preview
 
-![Streamlit Dashboard](https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit.png)
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit.png" alt="Streamlit Dashboard 1" width="45%"/>
+  <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit2.png" alt="Streamlit Dashboard 2" width="45%"/>
+</div>
 ---
 
 ## 🧠 Project Architecture
@@ -52,29 +56,31 @@ data sources
 ```
 marketing-analytics-pipeline/
 │
-├── extract/                 # Scripts to pull data
+├── extract/                  # Extraction scripts
 │   ├── extract_game_events.py
 │   └── extract_campaigns.py
 │
-├── transform/              # Data cleaning and joining
+├── transform/                # Data transformation logic
 │   └── transform_data.py
 │
-├── load/                   # Load transformed data to PostgreSQL
+├── load/                     # PostgreSQL loader
 │   └── load_to_postgres.py
 │
-├── dags/                   # Airflow DAGs
+├── dags/                     # Airflow DAGs
 │   └── marketing_etl_dag.py
 │
-├── docker/                 # Docker configuration
-│   └── docker-compose.yml
+├── dashboard/                # Streamlit dashboard app
+│   └── app.py
 │
-├── data/                   # Sample input files
+├── airflow/                  # Airflow docker-compose setup
+│   └── docker-compose.yaml
+│
+├── data/                     # Sample CSV data
 │   ├── game_events.csv
 │   └── campaigns.csv
 │
-├── .env                    # Environment variables (not committed)
-├── requirements.txt        # Python dependencies
-├── run_pipeline.py         # Main ETL runner
+├── run_pipeline.py           # CLI runner for ETL
+├── requirements.txt          # Python dependencies
 └── README.md
 ```
 ---
@@ -84,8 +90,8 @@ marketing-analytics-pipeline/
 ### 1. 🔧 Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/user-engagement-marketing-etl.git
-cd user-engagement-marketing-etl
+git clone https://github.com/YOUR_USERNAME/marketing-analytics-pipeline.git
+cd marketing-analytics-pipeline
 ```
 ### 2. 🐳 Start PostgreSQL with Docker
 ```
@@ -97,10 +103,41 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
-### 4. 📦 Run ETL pipeline manually (or via Airflow later)
+
+### 5. Run the ETL Pipeline Manually (Optional)
 ```
 python run_pipeline.py
 ```
+
+### 6. Run the Streamlit Dashboard
+```
+cd dashboard
+streamlit run app.py
+```
+
+## 🔄 Run Apache Airflow Locally
+# Navigate to Airflow folder:
+```
+cd airflow
+```
+# First-Time Initialization (run once):
+```
+docker-compose up --build
+```
+This automatically runs airflow db init and creates the admin user.
+
+# Run Airflow services:
+```
+docker-compose up webserver scheduler
+```
+
+
+
+
+
+
+
+
 ### ✅ Sample Use Case
 ```
 This project answers questions like:
@@ -128,7 +165,27 @@ This will help answer questions like:
 
 	streamlit run dashboard/app.py
 
-## 🔧 Requirements
+##  Initialize the Airflow database (first-time only)
+docker-compose up airflow-init
+docker-compose up webserver scheduler
+
+## Start Airflow services
+docker-compose up
+
+```
+cd airflow
+docker-compose up airflow-init  # No need for this , becouse it include the docker Run once to initialize
+docker-compose up webserver scheduler #bring up the main services:
+docker-compose up               # Then start Airflow
+```
+
+🌐 Access Airflow UI
+Visit:
+http://localhost:8080
+
+Login:
+	•	Username: airflow
+	•	Password: airflow
 
 Make sure Docker is installed and running on your system. (for PostgreSQL you should install docker)
 
