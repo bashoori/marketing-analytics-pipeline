@@ -22,6 +22,10 @@ A modular ETL pipeline project that simulates real-world data engineering tasks 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit.png" alt="Streamlit Dashboard 1" width="45%"/>
   <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit2.png" alt="Streamlit Dashboard 2" width="45%"/>
+  <br/>
+  <a href="https://github.com/bashoori/repo/blob/master/marketing-analytics-pipeline/airflow.png" target="_blank">
+    <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/airflow.png" alt="Airflow DAG" width="90%"/>
+  </a>
 </div>
 ---
 
@@ -96,6 +100,12 @@ cd marketing-analytics-pipeline
 ### 2. 🐳 Start PostgreSQL with Docker
 ```
 docker-compose -f docker/docker-compose.yml up -d
+```
+
+## Run the ETL script inside the Docker container
+Run the ETL script inside the Docker container
+```
+docker-compose run --rm webserver python /opt/airflow/dags/run_pipeline.py
 ```
 ### 3. 🐍 Create & activate virtual environment
 ```
