@@ -2,8 +2,27 @@
 
 This project implements a modular ETL pipeline using **Apache Airflow** to extract, transform, and load marketing data from various sources. It uses custom Python scripts organized in `extract/`, `transform/`, and `load/` directories, and runs via Airflow using Docker Compose.
 
+---
+
+## ⚙️ Technologies
+
+- **Apache Airflow 2.7.1**
+- **Python 3.10+**
+- **PostgreSQL (Airflow + Marketing DB)**
+- **Docker + Docker Compose**
+
+---
+
+## 🚀 Features
+
+- Modular ETL structure (Extract → Transform → Load)
+- DAG-based orchestration with task dependencies
+- PostgreSQL for both metadata and target database
+- Auto retry and scheduling setup
+- Runs in Docker using LocalExecutor
 ## 📸 Dashboard Preview
 
+---
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit.png" alt="Streamlit Dashboard 1" width="45%"/>
@@ -37,25 +56,6 @@ marketing-analytics-pipeline/
 ├── .env                            # Environment variables
 └── requirements.txt                # Python dependencies
 ```
-
----
-
-## ⚙️ Technologies
-
-- **Apache Airflow 2.7.1**
-- **Python 3.10+**
-- **PostgreSQL (Airflow + Marketing DB)**
-- **Docker + Docker Compose**
-
----
-
-## 🚀 Features
-
-- Modular ETL structure (Extract → Transform → Load)
-- DAG-based orchestration with task dependencies
-- PostgreSQL for both metadata and target database
-- Auto retry and scheduling setup
-- Runs in Docker using LocalExecutor
 
 ---
 
