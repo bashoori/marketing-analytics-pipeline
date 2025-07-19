@@ -1,20 +1,6 @@
-# 📊 User Engagement & Marketing ETL Pipeline
+# 🧠 Marketing Analytics ETL Pipeline with Apache Airflow
 
-A modular ETL pipeline project that simulates real-world data engineering tasks by combining **user behavior data** (gameplay logs) and **marketing campaign data** to generate actionable insights — all fully orchestrated and containerized using Docker.
-
----
-
-## 🚀 Features
-
-- 🛠 Extracts user event data and marketing campaigns from **JSON files** (simulating APIs or streaming data)
-- 🔄 Transforms, aggregates, and joins datasets using **Pandas**
-- 🔗 Merges campaign and gameplay data on `user_id` to create a unified engagement view
-- 💾 Loads the final dataset into a **PostgreSQL** database (simulating cloud warehouse like Redshift)
-- 📅 Scheduled and orchestrated with **Apache Airflow DAGs**
-- 📦 Fully containerized using **Docker Compose** (Airflow + PostgreSQL)
-- 🖥 Visualized with an interactive **Streamlit dashboard**
-- ✅ Runs seamlessly inside **GitHub Codespaces**
-
+This project implements a modular ETL pipeline using **Apache Airflow** to extract, transform, and load marketing data from various sources. It uses custom Python scripts organized in `extract/`, `transform/`, and `load/` directories, and runs via Airflow using Docker Compose.
 
 ## 📸 Dashboard Preview
 
@@ -29,179 +15,120 @@ A modular ETL pipeline project that simulates real-world data engineering tasks 
 </div>
 ---
 
-## 🧠 Project Architecture
-```
-data sources
-↓
-[ Extract ]
-↓
-[ Transform ]
-↓
-[ Load to PostgreSQL ]
-↓
-[ Ready for Analytics / BI Dashboards ]
-```
----
-
-## 🧱 Tech Stack
-```
-| Stage        | Tools/Technologies                  |
-|--------------|-------------------------------------|
-| Extract      | Python, Pandas                      |
-| Transform    | Pandas, SQL                         |
-| Load         | SQLAlchemy, PostgreSQL              |
-| Orchestration| Apache Airflow                      |
-| Containerize | Docker, docker-compose              |
-| Dev Env      | GitHub Codespaces, Virtualenv       |
-```
----
-
 ## 📂 Project Structure
 ```
 marketing-analytics-pipeline/
 │
-├── extract/                  # Extraction scripts
+├── dags/
+│   └── marketing_etl_dag.py        # DAG definition
+│
+├── extract/
 │   ├── extract_game_events.py
 │   └── extract_campaigns.py
 │
-├── transform/                # Data transformation logic
+├── transform/
 │   └── transform_data.py
 │
-├── load/                     # PostgreSQL loader
+├── load/
 │   └── load_to_postgres.py
 │
-├── dags/                     # Airflow DAGs
-│   └── marketing_etl_dag.py
-│
-├── dashboard/                # Streamlit dashboard app
-│   └── app.py
-│
-├── airflow/                  # Airflow docker-compose setup
-│   └── docker-compose.yaml
-│
-├── data/                     # Sample CSV data
-│   ├── game_events.csv
-│   └── campaigns.csv
-│
-├── run_pipeline.py           # CLI runner for ETL
-├── requirements.txt          # Python dependencies
-└── README.md
+├── docker-compose.yaml
+├── Dockerfile
+├── .env                            # Environment variables
+└── requirements.txt                # Python dependencies
 ```
+
 ---
 
-## ⚙️ Setup Instructions
+## ⚙️ Technologies
 
-### 1. 🔧 Clone the repository
+- **Apache Airflow 2.7.1**
+- **Python 3.10+**
+- **PostgreSQL (Airflow + Marketing DB)**
+- **Docker + Docker Compose**
+
+---
+
+## 🚀 Features
+
+- Modular ETL structure (Extract → Transform → Load)
+- DAG-based orchestration with task dependencies
+- PostgreSQL for both metadata and target database
+- Auto retry and scheduling setup
+- Runs in Docker using LocalExecutor
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/marketing-analytics-pipeline.git
+git clone https://github.com/your-username/marketing-analytics-pipeline.git
 cd marketing-analytics-pipeline
 ```
-### 2. 🐳 Start PostgreSQL with Docker
-```
-docker-compose -f docker/docker-compose.yml up -d
-```
 
-## Run the ETL script inside the Docker container
-Run the ETL script inside the Docker container
-```
-docker-compose run --rm webserver python /opt/airflow/dags/run_pipeline.py
-```
-### 3. 🐍 Create & activate virtual environment
-```
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+### 2. Add Environment Variables
 
-### 5. Run the ETL Pipeline Manually (Optional)
+Create a .env file:
 ```
-python run_pipeline.py
+AIRFLOW_DB_USER=airflow
+AIRFLOW_DB_PASSWORD=airflow
+AIRFLOW_DB_NAME=airflow
+
+MARKETING_DB_USER=marketer
+MARKETING_DB_PASSWORD=marketer
+MARKETING_DB_NAME=marketing
 ```
-
-### 6. Run the Streamlit Dashboard
+### 3. Start Airflow + PostgreSQL Services
 ```
-cd dashboard
-streamlit run app.py
+docker-compose down --volumes
+docker-compose up --build 
 ```
+### 4. Access Airflow UI
 
-## 🔄 Run Apache Airflow Locally
-# Navigate to Airflow folder:
+Visit: http://localhost:8080
+Login: airflow / airflow
+
+Enable the DAG named marketing_etl_pipeline.
+
+## 🧪 DAG Logic
+	•	extract_game_events: Pulls raw game events
+	•	extract_campaign_data: Pulls ad campaign data
+	•	transform_data: Joins & cleans the extracted data
+	•	load_data: Loads final data into a PostgreSQL table
+
+Dependency Flow:
+
+[extract_game_events, extract_campaign_data] → transform_data → load_data
+
+## 🧼 Troubleshooting
+
+“ModuleNotFoundError: No module named ‘extract’”
+
+Make sure the full project is mounted in Docker:
+
+In docker-compose.yaml:
 ```
-cd airflow
-```
-# First-Time Initialization (run once):
-```
-docker-compose up --build
-```
-This automatically runs airflow db init and creates the admin user.
-
-# Run Airflow services:
-```
-docker-compose up webserver scheduler
-```
-
-
-
-
-
-
-
-
-### ✅ Sample Use Case
-```
-This project answers questions like:
-	•	Which campaigns lead to high user engagement?
-	•	What’s the average playtime or purchase value per campaign?
-	•	Are paid campaigns outperforming organic channels?
+volumes:
+  - .:/opt/airflow  # ✅ Mount the entire project root
 ```
 
-📊 Sample Output After Transformation
-
-This will help answer questions like:
-	•	Which campaigns led to higher revenue or playtime?
-	•	Which users were engaged but did not click ads?
-
-	
-	1. pip install -r requirements.txt
-	2. docker-compose -f docker/docker-compose.yml up -d
-	
-
-	these are in requirements:
-	3. pip install streamlit
-	4. streamlit run app.py
-
-## how to run Streamlit:
-
-	streamlit run dashboard/app.py
-
-##  Initialize the Airflow database (first-time only)
-docker-compose up airflow-init
-docker-compose up webserver scheduler
-
-## Start Airflow services
-docker-compose up
-
+Also, the DAG includes:
 ```
-cd airflow
-docker-compose up airflow-init  # No need for this , becouse it include the docker Run once to initialize
-docker-compose up webserver scheduler #bring up the main services:
-docker-compose up               # Then start Airflow
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 ```
 
-🌐 Access Airflow UI
-Visit:
-http://localhost:8080
+## 📈 Future Improvements
+	•	Add unit tests
+	•	Enable logging and monitoring
+	•	Add email alerts for task failures
+	•	Use Docker Secrets for credentials
+	•	Deploy to cloud (e.g. AWS, GCP Composer)
 
-Login:
-	•	Username: airflow
-	•	Password: airflow
+⸻
 
-Make sure Docker is installed and running on your system. (for PostgreSQL you should install docker)
+## 👩‍💻 Author
 
-- [Install Docker](https://docs.docker.com/get-docker/)
-- Then run:
-```bash
-docker-compose -f docker/docker-compose.yml up -d
-
-
+Bita Ashoori
+Data Engineer 
