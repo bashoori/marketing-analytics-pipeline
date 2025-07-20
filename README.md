@@ -11,15 +11,22 @@ This project implements a modular ETL pipeline using **Apache Airflow** to extra
 - **PostgreSQL (Airflow + Marketing DB)**
 - **Docker + Docker Compose**
 
+
 ---
 
 ## 🚀 Features
 
-- Modular ETL structure (Extract → Transform → Load)
-- DAG-based orchestration with task dependencies
-- PostgreSQL for both metadata and target database
-- Auto retry and scheduling setup
-- Runs in Docker using LocalExecutor
+- Modular ETL: Cleanly separated Extract, Transform, Load steps
+
+- Airflow 2.7.1: DAG-based orchestration with retries, scheduling, and logging
+
+- PostgreSQL: Used for both Airflow metadata and final marketing DB
+
+- Docker Compose: One-command containerized deployment
+
+- Streamlit Dashboard: Real-time visualization of key marketing KPIs
+
+
 ## 📸 Dashboard Preview
 
 ---
@@ -41,24 +48,41 @@ This project implements a modular ETL pipeline using **Apache Airflow** to extra
 ## 📂 Project Structure
 ```
 marketing-analytics-pipeline/
-│
-├── dags/
-│   └── marketing_etl_dag.py        # DAG definition
-│
-├── extract/
-│   ├── extract_game_events.py
-│   └── extract_campaigns.py
-│
-├── transform/
-│   └── transform_data.py
-│
-├── load/
-│   └── load_to_postgres.py
-│
-├── docker-compose.yaml
-├── Dockerfile
-├── .env                            # Environment variables
-└── requirements.txt                # Python dependencies
+├── dags/                     # Airflow DAGs
+├── data/                     # Raw and staging data (JSON, CSV)
+├── etl/                      # Modular ETL code
+│   ├── extract/              # Data extraction scripts
+│   ├── transform/            # Data cleaning & transformation
+│   └── load/                 # Load to PostgreSQL
+├── dashboard/                # Streamlit dashboard app
+├── scripts/                  # Utility scripts (run_pipeline.py, test_json.py, etc.)
+├── logs/                     # Airflow logs (gitignored)
+├── plugins/                  # Airflow plugins (if any)
+├── requirements.txt          # Python dependencies
+├── docker-compose.yaml       # Container setup
+├── .env                      # Environment variables (excluded from Git)
+└── airflow.cfg               # Airflow config (excluded from Git)
+```
+
+---
+
+🌐 Streamlit Dashboard Preview
+
+The dashboard includes:
+
+- 📊 Total Revenue, Average Order Value
+
+- 📉 Conversion Rate & Click-Through Rate
+
+- 📍 Sales Distribution by Region (Map)
+
+- 🕒 Filters by Date & Product Category
+
+
+###  Run locally:
+```
+cd dashboard
+streamlit run dashboard.py
 ```
 
 ---
@@ -103,8 +127,9 @@ Enable the DAG named marketing_etl_pipeline.
 	•	load_data: Loads final data into a PostgreSQL table
 
 Dependency Flow:
-
+```
 [extract_game_events, extract_campaign_data] → transform_data → load_data
+```
 
 ## 🧼 Troubleshooting
 
