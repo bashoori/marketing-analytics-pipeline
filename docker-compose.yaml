@@ -1,3 +1,5 @@
+version: '3.8'
+
 x-airflow-common:
   &airflow-common
   image: apache/airflow:2.7.1
@@ -9,15 +11,18 @@ x-airflow-common:
     AIRFLOW__CORE__FERNET_KEY: ""
     AIRFLOW__CORE__LOAD_EXAMPLES: "False"
     AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS: "False"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "False"
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@airflow-db:5432/${AIRFLOW_DB_NAME}
     AIRFLOW__LOGGING__BASE_LOG_FOLDER: /opt/airflow/logs
     AIRFLOW__LOGGING__DAG_PROCESSOR_MANAGER_LOG_LOCATION: /opt/airflow/logs/dag_processor_manager/dag_processor_manager.log
+    PYTHONPATH: /opt/airflow
   volumes:
-    - ./:/opt/airflow  # Mount entire project
+    - ./:/opt/airflow
     - ./requirements.txt:/requirements.txt
   user: "${AIRFLOW_UID:-50000}"
 
 services:
+
   airflow-db:
     image: postgres:13
     restart: always
@@ -41,14 +46,14 @@ services:
       bash -c '
         pip install --no-cache-dir -r /requirements.txt && \
         if [ ! -f /opt/airflow/airflow.db.inited ]; then
-          airflow db migrate && \
+          airflow db init && \
           airflow users create \
-            --username airflow \
+            --username ${AIRFLOW_DB_USER} \
             --firstname Airflow \
             --lastname Admin \
             --role Admin \
             --email airflow@example.com \
-            --password airflow && \
+            --password ${AIRFLOW_DB_PASSWORD} && \
           touch /opt/airflow/airflow.db.inited;
         fi && \
         airflow webserver
@@ -56,6 +61,8 @@ services:
 
   scheduler:
     <<: *airflow-common
+    depends_on:
+      - airflow-db
     command: >
       bash -c "
         pip install --no-cache-dir -r /requirements.txt && \

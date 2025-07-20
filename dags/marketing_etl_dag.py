@@ -8,10 +8,10 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
-from extract.extract_game_events import extract_game_events
-from extract.extract_campaigns import extract_campaign_data
-from transform.transform_data import transform_and_join
-from load.load_to_postgres import load_to_postgres
+from etl.extract.extract_game_events import extract_game_events
+from etl.extract.extract_campaigns import extract_campaign_data
+from etl.transform.transform_data import transform_and_join
+from etl.load.load_to_postgres import load_to_postgres
 
 default_args = {
     'owner': 'airflow',

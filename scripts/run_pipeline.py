@@ -1,7 +1,12 @@
-from extract.extract_game_events import extract_game_events
-from extract.extract_campaigns import extract_campaign_data
-from transform.transform_data import transform_and_join
-from load.load_to_postgres import load_to_postgres
+import sys
+import os
+
+# Add root directory to sys.path
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+
+from etl.extract.extract_campaigns import extract_campaign_data
+from etl.transform.transform_data import transform_and_join
+from etl.load.load_to_postgres import load_to_postgres
 
 def main():
     print("🚀 Starting ETL pipeline...")

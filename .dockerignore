@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Logs and airflow-specific files
+logs/
+*.log
+airflow.db
+airflow.cfg
+*.pid
+*.err
+*.out
+
+# Data artifacts
+*.csv
+*.json
+*.sqlite
+*.sqlite3
+
+# Jupyter and notebook files
+.ipynb_checkpoints/
+
+# Project build outputs
+build/
+dist/
+*.egg-info/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Git-related
+.git/
+.gitignore
+
+# Node modules (in case of frontend additions)
+node_modules/
+npm-debug.log
+
+# Docker-specific
+.dockerignore
+.docker-compose.override.yml
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+logs/
+airflow.db.inited
