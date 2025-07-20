@@ -29,9 +29,13 @@ This project implements a modular ETL pipeline using **Apache Airflow** to extra
   <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit2.png" alt="Streamlit Dashboard 2" width="45%"/>
   <br/>
   <a href="https://github.com/bashoori/repo/blob/master/marketing-analytics-pipeline/airflow.png" target="_blank">
-    <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/airflow.png" alt="Airflow DAG" width="90%"/>
+    <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/airflow.png" alt="Airflow DAG" width="45%"/>
+  </a>
+  <a href="https://github.com/bashoori/repo/blob/master/marketing-analytics-pipeline/airflow2.png" target="_blank">
+    <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/airflow2.png" alt="Airflow DAG Status" width="45%"/>
   </a>
 </div>
+
 ---
 
 ## 📂 Project Structure
