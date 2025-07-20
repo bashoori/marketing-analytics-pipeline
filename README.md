@@ -2,7 +2,6 @@
 
 This project implements a modular ETL pipeline using **Apache Airflow** to extract, transform, and load marketing data from various sources. It uses custom Python scripts organized in `extract/`, `transform/`, and `load/` directories, and runs via Airflow using Docker Compose.
 
----
 
 ## ⚙️ Technologies
 
@@ -12,24 +11,7 @@ This project implements a modular ETL pipeline using **Apache Airflow** to extra
 - **Docker + Docker Compose**
 
 
----
-
-## 🚀 Features
-
-- Modular ETL: Cleanly separated Extract, Transform, Load steps
-
-- Airflow 2.7.1: DAG-based orchestration with retries, scheduling, and logging
-
-- PostgreSQL: Used for both Airflow metadata and final marketing DB
-
-- Docker Compose: One-command containerized deployment
-
-- Streamlit Dashboard: Real-time visualization of key marketing KPIs
-
-
 ## 📸 Dashboard Preview
-
----
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bashoori/repo/master/marketing-analytics-pipeline/streamlit.png" alt="Streamlit Dashboard 1" width="45%"/>
@@ -43,7 +25,6 @@ This project implements a modular ETL pipeline using **Apache Airflow** to extra
   </a>
 </div>
 
----
 
 ## 📂 Project Structure
 ```
@@ -63,6 +44,20 @@ marketing-analytics-pipeline/
 ├── .env                      # Environment variables (excluded from Git)
 └── airflow.cfg               # Airflow config (excluded from Git)
 ```
+
+---
+
+## 🚀 Features
+
+- Modular ETL: Cleanly separated Extract, Transform, Load steps
+
+- Airflow 2.7.1: DAG-based orchestration with retries, scheduling, and logging
+
+- PostgreSQL: Used for both Airflow metadata and final marketing DB
+
+- Docker Compose: One-command containerized deployment
+
+- Streamlit Dashboard: Real-time visualization of key marketing KPIs
 
 ---
 
@@ -155,7 +150,6 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 	•	Use Docker Secrets for credentials
 	•	Deploy to cloud (e.g. AWS, GCP Composer)
 
-⸻
 
 ## 👩‍💻 Author
 
