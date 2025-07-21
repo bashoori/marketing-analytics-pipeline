@@ -6,3 +6,6 @@ streamlit
 plotly
 matplotlib
 seaborn
+requests
+boto3 
+python-dotenv

@@ -1,0 +1,8 @@
+# lambda/extract_to_s3/requirements.txt
+requests
+
+
+
+#cd lambda/extract_to_s3
+#pip install -r requirements.txt -t .
+#zip -r extract_to_s3.zip .

@@ -8,6 +8,7 @@ This project implements a modular ETL pipeline using **Apache Airflow** to extra
 - **Apache Airflow 2.7.1**
 - **Python 3.10+**
 - **PostgreSQL (Airflow + Marketing DB)**
+- **AWS Lambda** (for extracting raw data to S3)
 - **Docker + Docker Compose**
 
 
@@ -30,7 +31,14 @@ This project implements a modular ETL pipeline using **Apache Airflow** to extra
 ```
 marketing-analytics-pipeline/
 ├── dags/                     # Airflow DAGs
-├── data/                     # Raw and staging data (JSON, CSV)
+├── data/   
+│   lambda/
+│   └── extract_to_s3/
+│   ├── lambda_function.py          # AWS Lambda function
+│   ├── extract_to_s3.zip           # Deployment package
+│   ├── requirements.txt            # Used to install requests lib locally
+│   └── upload_local_file.py        # (Optional) Local testing utility
+│                 # Raw and staging data (JSON, CSV)
 ├── etl/                      # Modular ETL code
 │   ├── extract/              # Data extraction scripts
 │   ├── transform/            # Data cleaning & transformation
@@ -142,6 +150,20 @@ Also, the DAG includes:
 ```
 sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 ```
+
+
+### How to Deploy to AWS Lambda
+```bash
+cd lambda/extract_to_s3
+pip install -r requirements.txt -t .
+zip -r extract_to_s3.zip .
+aws lambda update-function-code \
+  --function-name extract_marketing_data_to_s3 \
+  --zip-file fileb://extract_to_s3.zip
+```
+Make sure your .env contains AWS credentials and the function exists in AWS.
+⸻
+
 
 ## 📈 Future Improvements
 	•	Add unit tests

@@ -52,3 +52,8 @@ ehthumbs.db
 # Project-specific folders
 bk/airflow.cfg
 airflow.cfg
+
+
+
+lambda/extract_to_s3/__pycache__/
+lambda/extract_to_s3/*.pyc
