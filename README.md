@@ -34,11 +34,11 @@ marketing-analytics-pipeline/
 ├── data/   
 │   lambda/
 │   └── extract_to_s3/
-│   ├── lambda_function.py          # AWS Lambda function
-│   ├── extract_to_s3.zip           # Deployment package
-│   ├── requirements.txt            # Used to install requests lib locally
-│   └── upload_local_file.py        # (Optional) Local testing utility
-│                 # Raw and staging data (JSON, CSV)
+│   ├── lambda_function.py    # AWS Lambda function
+│   ├── extract_to_s3.zip     # Deployment package
+│   ├── requirements.txt      # Used to install requests lib locally
+│   └── upload_local_file.py  # (Optional) Local testing utility
+│                             # Raw and staging data (JSON, CSV)
 ├── etl/                      # Modular ETL code
 │   ├── extract/              # Data extraction scripts
 │   ├── transform/            # Data cleaning & transformation
